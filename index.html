@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Realçando sua beleza</title>
+  <style>
+    :root{
+      --bg:#f4f6fb; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --brand:#2563eb; --brand-dark:#1d4ed8;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; color:var(--text);
+      background: radial-gradient(1200px 600px at 20% 10%, #e8eeff 0, transparent 60%),
+                  radial-gradient(1000px 600px at 80% 90%, #eafcf3 0, transparent 55%), var(--bg);
+      min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .card{
+      width:100%; max-width:400px; background:var(--card); border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.08);
+      overflow:hidden; text-align:center;
+    }
+    .banner{height:90px; background: linear-gradient(135deg, #60a5fa, #34d399);} 
+    .avatar{
+      width:110px;height:110px;border-radius:50%;object-fit:cover;border:5px solid var(--card);
+      margin-top:-55px; box-shadow:0 6px 16px rgba(0,0,0,.15);
+    }
+    h1{font-size:1.4rem; margin:10px 16px 4px}
+    .job{color:var(--muted); margin:0 16px 12px}
+    .info{margin:6px 16px; color:#374151; font-size:.95rem}
+    .btns{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:14px 16px 8px}
+    .btn{background:var(--brand); color:#fff; text-decoration:none; padding:12px 18px; border-radius:12px; display:inline-flex; align-items:center; gap:8px; font-weight:600; box-shadow:0 6px 16px rgba(37,99,235,.25); transition:.2s; font-size:1rem}
+    .btn:hover{transform:translateY(-1px); background:var(--brand-dark)}
+    .qr-wrap{display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:18px 16px 6px}
+    .qr{
+      background:#f8fafc; border:1px dashed #e5e7eb; border-radius:14px; padding:12px;
+    }
+    .qr img{width:100%; max-width:150px; display:block; margin:0 auto}
+    .qr p{margin:8px 0 6px; font-size:.85rem; color:var(--muted)}
+    .dl{font-size:.8rem; text-decoration:none; color:var(--brand)}
+    footer{font-size:.75rem; color:var(--muted); padding:10px 16px 18px}
+
+    /* Responsividade */
+    @media (max-width:480px){
+      body{padding:12px}
+      .btn{flex:1; justify-content:center}
+      .qr-wrap{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<link rel="manifest" href="manifest.json">
+<body>
+  <!-- 1) PERSONALIZE AQUI -->
+  <script>
+    // ======= EDITAR ESTES DADOS =======
+    const NOME = "Célia Silva"; // Edit 
+    const CARGO = "Designer de Sobrancelhas"; // Edit se necessário
+    const EMAIL = "celiapsilva2020@hotmail.com"; // Edit seu email
+    const TELEFONE_DISPLAY = "91 108 2849";   // Formato Portual com espacos
+    const CIDADE = "Cadaval - Lisboa"; // Conselho/Cidade e Distrito
+
+    // WhatsApp: informe apenas números com indicativo internacional. Ex.: Portugal +351 911234567
+    const WHATSAPP_NUMERO = "351911082849"; // <— edite
+    const WHATSAPP_MSG = "Olá! Vim pelo seu cartão digital."; // mensagem inicial opcional
+
+    // O seu site pessoal/portefólio (ou rede social)
+    const SITE_URL = "https://oseudominio.pt"; // <— edite
+
+    // Foto de perfil (ficheiro local na mesma pasta ou URL)
+    const FOTO_PERFIL = "Celia.jpeg"; // coloque a sua imagem na pasta do projeto
+    // ====================================
+
+    // Helpers de link/QR
+    function waLink(){
+      const msg = encodeURIComponent(WHATSAPP_MSG || "");
+      return msg ? `https://wa.me/${WHATSAPP_NUMERO}?text=${msg}` : `https://wa.me/${WHATSAPP_NUMERO}`;
+    }
+    function siteLink(){ return SITE_URL; }
+    function qrSrc(data){
+      return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=2&data=${encodeURIComponent(data)}`;
+    }
+  </script>
+
+  <div class="card" id="card">
+    <div class="banner"></div>
+    <img class="avatar" id="avatar" alt="Foto de perfil" />
+
+    <h1 id="nome"></h1>
+    <p class="job" id="cargo"></p>
+
+    <p class="info" id="email"></p>
+    <p class="info" id="fone"></p>
+    <p class="info" id="cidade"></p>
+
+    <div class="btns">
+      <a class="btn" id="btn-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="btn" id="btn-site" target="_blank" rel="noopener">🌐 Site</a>
+    </div>
+
+    <div class="qr-wrap">
+      <div class="qr">
+        <img id="qr-wa" alt="QR para WhatsApp" />
+        <p>Leia o QR para falar comigo no WhatsApp</p>
+        <a class="dl" id="dl-wa" download="qr-whatsapp.png">Descarregar QR do WhatsApp</a>
+      </div>
+      <div class="qr">
+        <img id="qr-site" alt="QR do meu site" />
+        <p>Leia o QR para visitar o meu site</p>
+        <a class="dl" id="dl-site" download="qr-site.png">Descarregar QR do Site</a>
+      </div>
+    </div>
+
+    <footer>Actualize os dados no script no topo deste ficheiro e guarde. 🎯</footer>
+  </div>
+
+  <script>
+    document.getElementById('avatar').src = FOTO_PERFIL;
+    document.getElementById('nome').textContent = NOME;
+    document.getElementById('cargo').textContent = CARGO;
+    document.getElementById('email').textContent = `📧 ${EMAIL}`;
+    document.getElementById('fone').textContent = `📞 ${TELEFONE_DISPLAY}`;
+    document.getElementById('cidade').textContent = `📍 ${CIDADE}`;
+
+    const linkWA = waLink();
+    const linkSite = siteLink();
+    const btnWa = document.getElementById('btn-wa');
+    const btnSite = document.getElementById('btn-site');
+    btnWa.href = linkWA; btnSite.href = linkSite;
+
+    const srcWA = qrSrc(linkWA);
+    const srcSITE = qrSrc(linkSite);
+    const imgWa = document.getElementById('qr-wa');
+    const imgSite = document.getElementById('qr-site');
+    imgWa.src = srcWA; imgSite.src = srcSITE;
+
+    document.getElementById('dl-wa').href = srcWA;
+    document.getElementById('dl-site').href = srcSITE;
+  </script>
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("Service Worker registado ✅"))
+      .catch(err => console.error("Erro SW:", err));
+  }
+</script>
+</body>
+</html>
