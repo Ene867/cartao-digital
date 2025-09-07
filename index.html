@@ -5,40 +5,125 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Realçando sua beleza</title>
   <link rel="apple-touch-icon" href="icon.png" />
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Fonte Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#f4f6fb; --card:#ffffff; --text:#1f2937; --muted:#6b7280; --brand:#2563eb; --brand-dark:#1d4ed8;
+      --bg:#fdf7f9; 
+      --card:#ffffff; 
+      --text:#3d2c35; 
+      --muted:#8b6f7a; 
+      --brand:#d76c82; /* rosé elegante */
+      --brand-dark:#b45669;
+      --accent:#e5b94b; /* dourado */
     }
+
     *{box-sizing:border-box}
     body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; color:var(--text);
-      background: radial-gradient(1200px 600px at 20% 10%, #e8eeff 0, transparent 60%),
-                  radial-gradient(1000px 600px at 80% 90%, #eafcf3 0, transparent 55%), var(--bg);
+      margin:0; 
+      font-family:'Inter', system-ui, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 20% 10%, #ffeef3 0, transparent 60%),
+                  radial-gradient(1000px 600px at 80% 90%, #fff9f0 0, transparent 55%), var(--bg);
       min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
     }
+
     .card{
-      width:100%; max-width:400px; background:var(--card); border-radius:20px; box-shadow:0 10px 30px rgba(0,0,0,.08);
-      overflow:hidden; text-align:center;
+      width:100%; max-width:400px; 
+      background:var(--card); 
+      border-radius:20px; 
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      overflow:hidden; 
+      text-align:center;
     }
-    .banner{height:90px; background: linear-gradient(135deg, #60a5fa, #34d399);} 
+
+    .banner{
+      height:90px; 
+      background: linear-gradient(135deg, #f8cdda, #f9f1ec);
+    } 
+
     .avatar{
-      width:110px;height:110px;border-radius:50%;object-fit:cover;border:5px solid var(--card);
-      margin-top:-55px; box-shadow:0 6px 16px rgba(0,0,0,.15);
+      width:110px; height:110px;
+      border-radius:50%; object-fit:cover;
+      border:5px solid var(--card);
+      outline:3px solid var(--accent); /* aro dourado */
+      margin-top:-55px; 
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
     }
-    h1{font-size:1.4rem; margin:10px 16px 4px}
-    .job{color:var(--muted); margin:0 16px 12px}
-    .info{margin:6px 16px; color:#374151; font-size:.95rem}
-    .btns{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:14px 16px 8px}
-    .btn{background:var(--brand); color:#fff; text-decoration:none; padding:12px 18px; border-radius:12px; display:inline-flex; align-items:center; gap:8px; font-weight:600; box-shadow:0 6px 16px rgba(37,99,235,.25); transition:.2s; font-size:1rem}
+
+    h1{
+      font-size:1.5rem; 
+      margin:12px 16px 6px;
+      font-weight:700;
+      letter-spacing:-0.5px;
+    }
+
+    .job{
+      color:var(--muted); 
+      margin:0 16px 16px; 
+      font-weight:500;
+    }
+
+    .info{
+      margin:4px 16px; 
+      color:#5b434d; 
+      font-size:.92rem;
+    }
+
+    .contact a{
+      color:var(--brand); 
+      text-decoration:none;
+    }
+
+    .btns{
+      display:flex; 
+      gap:10px; 
+      justify-content:center; 
+      flex-wrap:wrap; 
+      margin:18px 16px 10px
+    }
+
+    .btn{
+      background:var(--brand); 
+      color:#fff; 
+      text-decoration:none; 
+      padding:10px 20px; 
+      border-radius:30px; 
+      display:inline-flex; 
+      align-items:center; 
+      gap:8px; 
+      font-weight:600; 
+      box-shadow:0 6px 16px rgba(215,108,130,.25); 
+      transition:.2s; 
+      font-size:.95rem
+    }
     .btn:hover{transform:translateY(-1px); background:var(--brand-dark)}
-    .qr-wrap{display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:18px 16px 6px}
+    .btn svg{width:18px; height:18px; fill:#fff;}
+
+    .qr-wrap{
+      display:grid; 
+      grid-template-columns:1fr 1fr; 
+      gap:16px; 
+      padding:18px 16px 6px
+    }
     .qr{
-      background:#f8fafc; border:1px dashed #e5e7eb; border-radius:14px; padding:12px;
+      background:#fff9fb; 
+      border:1px solid #f1dbe2; 
+      border-radius:14px; 
+      padding:12px;
     }
     .qr img{width:100%; max-width:150px; display:block; margin:0 auto}
-    .qr p{margin:8px 0 6px; font-size:.85rem; color:var(--muted)}
+    .qr p{margin:8px 0 6px; font-size:.82rem; color:var(--muted)}
     .dl{font-size:.8rem; text-decoration:none; color:var(--brand)}
-    footer{font-size:.75rem; color:var(--muted); padding:10px 16px 18px}
+
+    footer{
+      font-size:.75rem; 
+      color:var(--muted); 
+      padding:14px 16px 20px;
+    }
 
     /* Responsividade */
     @media (max-width:480px){
@@ -48,39 +133,7 @@
     }
   </style>
 </head>
-<link rel="manifest" href="manifest.json">
 <body>
-  <!-- 1) PERSONALIZE AQUI -->
-  <script>
-    // ======= EDITAR ESTES DADOS =======
-    const NOME = "Célia Silva"; // Edit 
-    const CARGO = "Designer de Sobrancelhas"; // Edit se necessário
-    const EMAIL = "celiapsilva2020@hotmail.com"; // Edit seu email
-    const TELEFONE_DISPLAY = "91 108 2849";   // Formato Portual com espacos
-    const CIDADE = "Cadaval - Lisboa"; // Conselho/Cidade e Distrito
-
-    // WhatsApp: informe apenas números com indicativo internacional. Ex.: Portugal +351 911234567
-    const WHATSAPP_NUMERO = "351911082849"; // <— edite
-    const WHATSAPP_MSG = "Olá! Vim pelo seu cartão digital."; // mensagem inicial opcional
-
-    // O seu site pessoal/portefólio (ou rede social)
-    const SITE_URL = "https://oseudominio.pt"; // <— edite
-
-    // Foto de perfil (ficheiro local na mesma pasta ou URL)
-    const FOTO_PERFIL = "Celia.jpeg"; // coloque a sua imagem na pasta do projeto
-    // ====================================
-
-    // Helpers de link/QR
-    function waLink(){
-      const msg = encodeURIComponent(WHATSAPP_MSG || "");
-      return msg ? `https://wa.me/${WHATSAPP_NUMERO}?text=${msg}` : `https://wa.me/${WHATSAPP_NUMERO}`;
-    }
-    function siteLink(){ return SITE_URL; }
-    function qrSrc(data){
-      return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=2&data=${encodeURIComponent(data)}`;
-    }
-  </script>
-
   <div class="card" id="card">
     <div class="banner"></div>
     <img class="avatar" id="avatar" alt="Foto de perfil" />
@@ -93,8 +146,14 @@
     <p class="info" id="cidade"></p>
 
     <div class="btns">
-      <a class="btn" id="btn-wa" target="_blank" rel="noopener">💬 WhatsApp</a>
-      <a class="btn" id="btn-site" target="_blank" rel="noopener">🌐 Site</a>
+      <a class="btn" id="btn-wa" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16 0c-8.837 0-16 7.163-16 16 0 2.822.738 5.57 2.144 7.984l-2.204 8.016 8.268-2.158c2.322 1.272 4.942 1.942 7.792 1.942 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29c-2.482 0-4.794-.678-6.79-1.858l-.486-.288-4.9 1.278 1.312-4.768-.316-.492c-1.297-2.016-1.987-4.342-1.987-6.872 0-7.168 5.832-13 13-13s13 5.832 13 13-5.832 13-13 13z"/><path d="M23.352 19.53c-.399-.199-2.358-1.164-2.724-1.296-.366-.133-.634-.199-.902.199-.268.399-1.035 1.296-1.268 1.564-.233.266-.466.299-.865.1-.399-.199-1.687-.621-3.215-1.981-1.188-1.062-1.988-2.371-2.222-2.77-.233-.399-.025-.614.174-.812.179-.178.399-.466.599-.699.199-.233.266-.399.399-.665.134-.266.067-.499-.033-.699-.1-.199-.902-2.179-1.235-2.985-.325-.778-.657-.674-.902-.687l-.766-.013c-.233 0-.632.091-.965.457-.333.366-1.268 1.238-1.268 3.017s1.297 3.496 1.481 3.732c.183.233 2.551 3.89 6.188 5.448.865.373 1.54.597 2.066.765.867.275 1.655.236 2.277.143.694-.104 2.358-.962 2.689-1.89.332-.929.332-1.725.233-1.89-.1-.166-.366-.266-.765-.466z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn" id="btn-site" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16 0c-8.836 0-16 7.164-16 16s7.164 16 16 16 16-7.164 16-16-7.164-16-16-16zM16 29.819c-7.618 0-13.819-6.201-13.819-13.819s6.201-13.819 13.819-13.819 13.819 6.201 13.819 13.819-6.201 13.819-13.819 13.819z"/><path d="M16 5.731c-5.66 0-10.269 4.608-10.269 10.269s4.608 10.269 10.269 10.269 10.269-4.608 10.269-10.269-4.609-10.269-10.269-10.269zM16 24.01c-4.42 0-8.01-3.59-8.01-8.01s3.59-8.01 8.01-8.01 8.01 3.59 8.01 8.01-3.59 8.01-8.01 8.01z"/></svg>
+        Site
+      </a>
     </div>
 
     <div class="qr-wrap">
@@ -110,10 +169,29 @@
       </div>
     </div>
 
-    <footer>Actualize os dados no script no topo deste ficheiro e guarde. 🎯</footer>
+    <footer>© 2025 Célia Silva – Todos os direitos reservados</footer>
   </div>
 
   <script>
+    const NOME = "Célia Silva";
+    const CARGO = "Designer de Sobrancelhas";
+    const EMAIL = "celiapsilva2020@hotmail.com";
+    const TELEFONE_DISPLAY = "91 108 2849";
+    const CIDADE = "Cadaval - Lisboa";
+    const WHATSAPP_NUMERO = "351911082849";
+    const WHATSAPP_MSG = "Olá! Vim pelo seu cartão digital.";
+    const SITE_URL = "https://oseudominio.pt";
+    const FOTO_PERFIL = "Celia.jpeg";
+
+    function waLink(){
+      const msg = encodeURIComponent(WHATSAPP_MSG || "");
+      return msg ? `https://wa.me/${WHATSAPP_NUMERO}?text=${msg}` : `https://wa.me/${WHATSAPP_NUMERO}`;
+    }
+    function siteLink(){ return SITE_URL; }
+    function qrSrc(data){
+      return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=2&data=${encodeURIComponent(data)}`;
+    }
+
     document.getElementById('avatar').src = FOTO_PERFIL;
     document.getElementById('nome').textContent = NOME;
     document.getElementById('cargo').textContent = CARGO;
@@ -123,25 +201,23 @@
 
     const linkWA = waLink();
     const linkSite = siteLink();
-    const btnWa = document.getElementById('btn-wa');
-    const btnSite = document.getElementById('btn-site');
-    btnWa.href = linkWA; btnSite.href = linkSite;
+    document.getElementById('btn-wa').href = linkWA;
+    document.getElementById('btn-site').href = linkSite;
 
     const srcWA = qrSrc(linkWA);
     const srcSITE = qrSrc(linkSite);
-    const imgWa = document.getElementById('qr-wa');
-    const imgSite = document.getElementById('qr-site');
-    imgWa.src = srcWA; imgSite.src = srcSITE;
-
+    document.getElementById('qr-wa').src = srcWA;
+    document.getElementById('qr-site').src = srcSITE;
     document.getElementById('dl-wa').href = srcWA;
     document.getElementById('dl-site').href = srcSITE;
   </script>
+
   <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("Service Worker registado ✅"))
-      .catch(err => console.error("Erro SW:", err));
-  }
-</script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("./sw.js")
+        .then(() => console.log("Service Worker registado ✅"))
+        .catch(err => console.error("Erro SW:", err));
+    }
+  </script>
 </body>
 </html>
